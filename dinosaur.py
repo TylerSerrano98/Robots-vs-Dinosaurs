@@ -9,4 +9,7 @@ class Dinosaur:
         pass
 
     def attack(self, robot):
-        pass
+        if self.health_points == 0:
+            print(f"{self.species} is out of HP and can't attack!")
+        else:
+             robot.health -= self.attack_power

@@ -10,5 +10,8 @@ class Robot:
         self.weapon = Weapon(input("Enter robots weapon"), random.randomint(1, 10))
         
 
-    def attack_opp(self,dinosaur):
-        pass
+    def attack_dinosaurs(self,dinosaur):
+        if self.health == 0:
+           print("{self.name} is out of health and can't attack!")
+        else:
+            dinosaur.health_points -= self.weapon.attack_power
