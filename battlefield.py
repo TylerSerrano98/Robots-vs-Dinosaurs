@@ -17,6 +17,7 @@ class Battlefield:
         self.user_selector = 0
         self.target_selector = 0
         self.target = 0
+        self.turn = 1
 
 
     def run_game(self):
@@ -53,7 +54,39 @@ class Battlefield:
         print("Welcome to Robots vs. Dinosaurs")
 
     def battle(self):
-        pass
+        if self.turn % 2 == 1:
+            if self.users_characters == self.herd.dinosaur:
+                self.dino_turn()
+                if self.target_defend.health_points < 1:
+                    print(f"{self.target_defend.species} is dead!")
+                    del self.users_targets[self.enemy_selector]
+        else:
+            self.robo_turn()
+            if self.target_defend.health < 1:
+                print(f"{self.target_defend.species} is dead!")
+                del self.users_targets[self.enemy_selector]
+            else:
+                if self.users_characters == self.herd.dinosaurs:
+                    self.robo_turn()
+                if self.user_defend.health_points < 1:
+                    print(f"{self.user_defend.species} is dead!")
+                    del self.users_characters[self.user_selector]
+                else:
+                    self.dino_turn()
+                if self.user_defend.health < 1:
+                    print(f"{self.user_defend.name} is dead!")
+                    del self.users_characters[self.user_selector]
+        if len(self.users_characters) > 0:
+            if len(self.users_targets) > 0:
+                self.target_selector = 0
+                self.turn += 1
+                self.battle()
+            else:
+                print(f"Winner:")
+                self.display_winners()
+        else:
+            print("You lost.. the winner is:")
+            self.display_winners()
 
     def dino_turn(self):
         if self.users_characters == self.herd.dinosaur:
@@ -118,4 +151,5 @@ class Battlefield:
             self.target_selector += 1
 
     def display_winners(self):
+        
         pass
