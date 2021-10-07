@@ -23,6 +23,7 @@ class Battlefield:
     def run_game(self):
         self.display_welcome()
         self.team_select()
+        self.battle()
 
     def team_select(self):
         self.fleet.create_fleet()
@@ -38,7 +39,7 @@ class Battlefield:
                 print(f'Species: {dinosaur.species}, Health: {dinosaur.health_points}, Attack Power: {dinosaur.attack_power}')
             print("Here is your enemy robots:")
             for robot in self.users_targets:
-                print(f'Name: {robot.name}, Health: {robot.health}, Weapon: {robot.weapon.weapon_type} (atk) {robo.weapon.attack_power}')         
+                print(f'Name: {robot.name}, Health: {robot.health}, Weapon: {robot.weapon.weapon_type} (atk) {robot.weapon.attack_power}')         
         else:
             self.user_team = self.fleet.robot
             self.users_targets = self.herd.dinosaur
@@ -151,5 +152,21 @@ class Battlefield:
             self.target_selector += 1
 
     def display_winners(self):
-        
-        pass
+        if self.user_team == 'dinos':
+            if len(self.users_characters) == 0:
+                print('The Robots!')
+                for robot in self.fleet.robots:
+                    print(f'last one standing {robot.name}!')
+            else:
+                print('The Dinosaurs!')
+                for dinosaur in self.herd.dinosaur:
+                    print(f'last one standing {dinosaur.species}!')
+        else:
+            if len(self.user_team) == 0:
+                print(f'The Dinosaurs!')
+                for dinosaur in self.herd.dinosaur:
+                    print(f'last one standing {dinosaur.species}!')
+            else:
+                print('The Robots!')
+                for robot in self.fleet.robot:
+                    print(f'last one standing {robot.name}!')
