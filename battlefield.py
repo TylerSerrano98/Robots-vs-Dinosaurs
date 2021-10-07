@@ -6,9 +6,11 @@ class Battlefield:
         pass
 
     def run_game(self):
-        pass
+        self.display_welcome()
+        
 
     def display_welcome(self):
+        print("Welcome to Robots vs. Dinosaurs")
         pass
 
     def battle(self):
